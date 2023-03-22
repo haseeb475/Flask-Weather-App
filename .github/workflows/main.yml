@@ -1,0 +1,25 @@
+name: Merge to master
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  merge-to-master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'refs/heads/master'
+      - name: Merge changes
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git merge --no-ff "${{ github.event.pull_request.head.ref }}"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
