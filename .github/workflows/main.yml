@@ -27,5 +27,5 @@ jobs:
         branch: 'main'
         body: |
           Code quality check passed for feature branches:
-          - taimoor
-          - saqib
+          - haseeb
+          - arham
